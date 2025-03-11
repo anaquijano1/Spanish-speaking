@@ -1,17 +1,13 @@
-import { View, Text, StyleSheet, ImageBackground} from 'react-native'
+import { View, Text, StyleSheet, Image} from 'react-native'
 import React from 'react'
-import icedCofeeImg from "@/assets/images/iced.png"
+import handImage from "@/assets/images/hand.png"
 
 const app = () => {
   return (
     <View style={styles.container}>
-      <ImageBackground
-       source={icedCofeeImg}
-       resizeMode='cover'
-       style={styles.image}
-      >
-      <Text style={styles.text}> Welcome to the spanish speaking world! </Text>
-      </ImageBackground>
+      <Text style={styles.text}> Bienvendio al mundo hsipano hablante!</Text>
+      <Image source= {handImage} style={styles.image}></Image>
+      <Text style={styles.text}> Welcome to the spanish speaking world!</Text>
     </View>
   )
 }
@@ -21,20 +17,25 @@ export default app
 const styles = StyleSheet.create({
   container:{
     flex: 1,
-  flexDirection: 'column',
+    flexDirection: 'column',
+    justifyContent:'center',
+    alignItems:'center',
+    backgroundColor:'#f8f8f8',
   },
   image:{
-    width:'100%',
-    height: '100%',
-    flex: 1,
-    resizeMode: 'cover',
+    resizeMode: 'contain',
     justifyContent: 'center',
+    height: '400px',
+    width: '300px',
+    alignItems:'center',
   },
   text: {
-    color: 'white',
+    color: 'black',
     fontSize: 35,
-    fontWeight: 'bold',
     textAlign: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    fontWeight:'heavy',
+    fontStyle:'italic',
+    letterSpacing:-1,
+    padding:'5px',
   }
 })

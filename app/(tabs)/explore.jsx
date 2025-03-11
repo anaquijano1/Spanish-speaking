@@ -1,52 +1,69 @@
-import { View, Text, StyleSheet, Image, Button} from 'react-native'
-import React from 'react'
-import imageShow from "@/assets/images/mm.png"
-
+import { View, Text, StyleSheet, Image, Button, Alert } from 'react-native';
+import React, { useState } from 'react';
+import imageShow from "@/assets/images/dog.png";
 
 export default function TabTwoScreen() {
+  const [message, setMessage] = useState('');
+  const handlePress = (buttonName) => {
+    if (buttonName === 'Perro') {
+      setMessage("Congratulations, that's the right answer!");
+    } else {
+      setMessage('Try again!');
+    }
+  };
+
   return (
     <View style={styles.main}>
       <View style={styles.container}>
         <Text style={styles.question}>What is this?</Text>
-        <Image source= {imageShow} style={styles.image}></Image>
+        <Image source={imageShow} style={styles.image}></Image>
         <View style={styles.options}>
           <View style={styles.optionOne}>
-            <Button style={styles.options}>Option 1</Button>
+            <Button
+              title="Carro"
+              onPress={() => handlePress('Carro')}
+            /> 
           </View>
           <View style={styles.optionOne}>
-            <Text style={styles.text}>Option 2</Text>
+            <Button
+              title="Camiseta"
+              onPress={() => handlePress('Camiseta')}
+            /> 
           </View>
-
           <View style={styles.optionOne}>
-            <Text style={styles.text}>Option 3</Text>
+            <Button
+              title="Perro"
+              onPress={() => handlePress('Perro')}
+            /> 
           </View>
-
         </View>
+
+        {}
+        {message ? <Text style={styles.messageText}>{message}</Text> : null}
       </View>
     </View>
   );
 }
 
-
 const styles = StyleSheet.create({
-  main:{
+  main: {
     flex: 1,
-    backgroundColor:'#FFFFFF',
+    backgroundColor: '#FFFFFF',
   },
-  container:{
+  container: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent:'center',
+    justifyContent: 'center',
     marginTop: '40%',
     alignItems: 'center',
   },
-  options:{
+  options: {
     flexDirection: 'row',
-    justifyContent:'center',
+    justifyContent: 'center',
     marginBottom: '40%',
-    borderColor:'red',
+    borderColor: 'red',
   },
-  image:{
+  image: {
     height: '20%',
     width: '80%',
     flex: 1,
@@ -69,13 +86,20 @@ const styles = StyleSheet.create({
     color: '#031012',
   },
   optionOne: {
-    borderColor:'red',
-    borderWidth:2,
     textAlign: 'center',
-    height:'100%',
-    width:'60%',
-    padding:3,
-    marginHorizontal: '10%',
-    backgroundColor:'white',
-  }
+    height: '100%',
+    width: '50%',
+    padding: 3,
+    marginHorizontal: '5%',
+    backgroundColor: 'white',
+  },
+  messageText: {
+    marginBottom: 10,
+    fontSize: 18,
+    color: 'black', // Color of the congratulations message
+    fontWeight:'bold',
+  },
 });
+
+
+
