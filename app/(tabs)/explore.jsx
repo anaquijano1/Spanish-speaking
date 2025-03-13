@@ -1,12 +1,37 @@
 import { View, Text, StyleSheet, Image, Button, Alert } from 'react-native';
 import React, { useState } from 'react';
-import imageShow from "@/assets/images/dog.png";
+import image1 from "@/assets/images/dog.png";
+import image2 from "@/assets/images/carro.png";
+import image3 from "@/assets/images/dog.png";
+import image4 from "@/assets/images/carro.png";
+
+
+
+
+
 
 export default function TabTwoScreen() {
-  const [message, setMessage] = useState('');
+  const images =[image1,image2, image3,image4];
+  const answers = ['Perro', 'Carro', 'Perro','Carro']
+  const answerChoices=[['Perro', 'Carro', 'Camiseta'],
+                       ['Carro', 'Tigre', 'Sombra'],
+                       ['Termo', 'Bomba', 'Perro'],
+                       ['Perro', 'Camion', 'Jugo']]
+  const [message, setMessage] = useState('  ');
+  const [imageIndex, setImageIndex] = useState(0);
+  let button1=answerChoices[imageIndex][0];
+  let button2=answerChoices[imageIndex][1];
+  let button3=answerChoices[imageIndex][2];
+
   const handlePress = (buttonName) => {
-    if (buttonName === 'Perro') {
+    if (buttonName === answers[imageIndex]) {
       setMessage("Congratulations, that's the right answer!");
+      setTimeout(() => {
+        const nextIndex = (imageIndex + 1) % images.length;
+        setImageIndex(nextIndex); 
+        setMessage("    "); 
+      }, 2000);
+      
     } else {
       setMessage('Try again!');
     }
@@ -16,24 +41,24 @@ export default function TabTwoScreen() {
     <View style={styles.main}>
       <View style={styles.container}>
         <Text style={styles.question}>What is this?</Text>
-        <Image source={imageShow} style={styles.image}></Image>
+        <Image source={images[imageIndex]} style={styles.image}></Image>
         <View style={styles.options}>
           <View style={styles.optionOne}>
             <Button
-              title="Carro"
-              onPress={() => handlePress('Carro')}
+              title={button1}
+              onPress={() => handlePress(answerChoices[imageIndex][0])}
             /> 
           </View>
           <View style={styles.optionOne}>
             <Button
-              title="Camiseta"
-              onPress={() => handlePress('Camiseta')}
+              title={button2}
+              onPress={() => handlePress(answerChoices[imageIndex][1])}
             /> 
           </View>
           <View style={styles.optionOne}>
             <Button
-              title="Perro"
-              onPress={() => handlePress('Perro')}
+              title={button3}
+              onPress={() => handlePress(answerChoices[imageIndex][2])}
             /> 
           </View>
         </View>
@@ -54,13 +79,13 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    marginTop: '40%',
+    marginTop: '20%',
     alignItems: 'center',
   },
   options: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom: '40%',
+    marginBottom: '20%',
     borderColor: 'red',
   },
   image: {
@@ -94,7 +119,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   messageText: {
-    marginBottom: 10,
+    marginBottom: '20%',
     fontSize: 18,
     color: 'black', // Color of the congratulations message
     fontWeight:'bold',
