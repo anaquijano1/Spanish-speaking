@@ -2,8 +2,8 @@ import { View, Text, StyleSheet, Image, Button, Alert } from 'react-native';
 import React, { useState } from 'react';
 import image1 from "@/assets/images/dog.png";
 import image2 from "@/assets/images/carro.png";
-import image3 from "@/assets/images/dog.png";
-import image4 from "@/assets/images/carro.png";
+import image3 from "@/assets/images/sombrilla.png";
+import image4 from "@/assets/images/jugo.png";
 
 
 
@@ -12,11 +12,11 @@ import image4 from "@/assets/images/carro.png";
 
 export default function TabTwoScreen() {
   const images =[image1,image2, image3,image4];
-  const answers = ['Perro', 'Carro', 'Perro','Carro']
+  const answers = ['Perro', 'Carro', 'Sombrilla','Jugó']
   const answerChoices=[['Perro', 'Carro', 'Camiseta'],
                        ['Carro', 'Tigre', 'Sombra'],
-                       ['Termo', 'Bomba', 'Perro'],
-                       ['Perro', 'Camion', 'Jugo']]
+                       ['Termo', 'Bomba', 'Sombrilla'],
+                       ['Perro', 'Camion', 'Jugó']]
   const [message, setMessage] = useState('  ');
   const [imageIndex, setImageIndex] = useState(0);
   let button1=answerChoices[imageIndex][0];
